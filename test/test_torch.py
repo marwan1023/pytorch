@@ -7504,7 +7504,6 @@ class TestTorchDeviceType(TestCase):
         mexp = x.matrix_exp()
         self.assertEqual(mexp, x.exp())
 
-    @onlyCPU
     @skipCUDAIfNoMagma
     @skipCPUIfNoLapack
     @dtypes(torch.float, torch.double)
@@ -7605,7 +7604,6 @@ class TestTorchDeviceType(TestCase):
         run_test(3, 3, 4, 4)
         run_test(3, 3, 5, 5)
 
-    @onlyCPU
     @skipCUDAIfNoMagma
     @skipCPUIfNoLapack
     @dtypes(torch.float, torch.double)
@@ -7641,7 +7639,6 @@ class TestTorchDeviceType(TestCase):
         run_test(3, 3, 4, 4)
         run_test(3, 3, 5, 5)
 
-    @onlyCPU
     @skipCUDAIfNoMagma
     @skipCPUIfNoLapack
     @dtypes(torch.float, torch.double)

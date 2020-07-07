@@ -28,11 +28,12 @@ Tensor matrix_exp(const Tensor& a) {
 
   // Create input for kernels by squashing batch dimensions,
   // i.e. make an n-dim tensor a 3-dim tensor
-  auto mexp = at::empty(a.sizes(), a.options());
+  auto a_contig = a.contiguous();
+  auto mexp = at::zeros_like(a_contig);
   auto mexp_squashed_batch_dims = mexp.view(
     {-1, mexp.size(-2), mexp.size(-1)});
-  auto a_squashed_batch_dims = a.view(
-    {-1, a.size(-2), a.size(-1)});
+  auto a_squashed_batch_dims = a_contig.view(
+    {-1, a_contig.size(-2), a_contig.size(-1)});
 
   matrix_exp_stub(
     a.device().type(),

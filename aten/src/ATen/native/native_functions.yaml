@@ -1721,7 +1721,7 @@
 - func: matrix_exp(Tensor self) -> Tensor
   variants: function, method
   dispatch:
-    CPU: matrix_exp
+    CPU, CUDA: matrix_exp
 
 - func: matrix_exp_backward(Tensor self, Tensor grad) -> Tensor
   use_c10_dispatcher: full
