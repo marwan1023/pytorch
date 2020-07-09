@@ -18,7 +18,7 @@ Tensor matrix_power(const Tensor& matrices, const Tensor& powers) {
   if (matrices.dim() > 2) {
     auto res = at::empty(matrices.sizes(), matrices.options());
     auto num_matrices = matrices.size(0);
-    at::parallel_for(0, num_matrices, 0,
+    at::parallel_for(0, num_matrices, 1,
       [&](int64_t start, int64_t end) {
         for (auto i = start; i < end; ++i) {
           auto res_ith_matrix = res.select(0, i);
@@ -194,7 +194,7 @@ void matrix_exp_cpu_kernel(Tensor& res, const Tensor& a) {
   }
   else {
     auto num_matrices = a.size(0);
-    at::parallel_for(0, num_matrices, 0,
+    at::parallel_for(0, num_matrices, 1,
       [&](int64_t start, int64_t end) {
         for (auto i = start; i < end; ++i) {
           auto res_ith_matrix = res.select(0, i);
